@@ -6,6 +6,9 @@ app.use(bodyParser.json())
 const data = require("./routes/ragister")
 app.use("/",data)
 
+const dataapis = require("./routes/apis")
+app.use("/",dataapis)
+
 app.listen(4000,()=>{
-    console.log("connection done with server 8000")
+    console.log("connection done with server 4000")
 })
