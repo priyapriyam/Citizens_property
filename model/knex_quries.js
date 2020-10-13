@@ -17,4 +17,9 @@ let data_post_in_table = (all_details)=>{
     return knex('userInformation').insert(all_details)
 }
 
-module.exports ={post_data,login_userPhone,data_post_in_table,login_userName}
+let get_data_by_PTIN = (PTIN) =>{
+    return knex.select ("*").from ('property') .where ('PTIN',PTIN)
+}
+
+
+module.exports ={post_data,login_userPhone,data_post_in_table,login_userName,get_data_by_PTIN }
