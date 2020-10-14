@@ -1,25 +1,34 @@
 const knex = require('./connection')
 
-
-let post_data = (details) => {
-    return knex('users_Table').insert(details)
+// reg
+let users_data = (all_detail)=>{
+    return knex('userInformation').insert(all_detail)
 }
 
-var login_userPhone = (userPhone) => {
-    return knex.select("*").from("userInformation").havingIn("userInformation.userPhone",userPhone)
-}
-
+//login 
 var login_userName = (userName) => {
     return knex.select("*").from("userInformation").havingIn("userInformation.userName",userName)
 }
 
-let data_post_in_table = (all_details)=>{
-    return knex('userInformation').insert(all_details)
-}
-
+//get data  by PTIN
 let get_data_by_PTIN = (PTIN) =>{
     return knex.select ("*").from ('property') .where ('PTIN',PTIN)
 }
 
+let update_citizen = (citizen) => {
+    return knex.select("*").from("userInformation").havingIn("userInformation.citizen",citizen)
+}
 
-module.exports ={post_data,login_userPhone,data_post_in_table,login_userName,get_data_by_PTIN }
+let data_post_in_table = (all_details)=>{
+    return knex('roles').insert(all_details)
+}
+
+let citizen_status = (data) => {
+    return knex('Status_table').insert(data)
+};
+
+let get_data = (Id) => {
+    return knex('Status_table').select('*').where('Status_table.Id',Id)
+};
+
+module.exports ={users_data,login_userName,get_data_by_PTIN,update_citizen,data_post_in_table,citizen_status,get_data}

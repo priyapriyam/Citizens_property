@@ -2,17 +2,17 @@ const express = require('express');
 const app = express();
 const knex = require('../model/knex_quries')
 
-1// first api for ragister the user
+//1 First api for ragister the user
 app.post('/newuser', (req, res) => {
-    var all_details = {
-        Role_id : req.body.Role_id,
+    var all_detail = {
         userName : req.body.userName,
         userEmail : req.body.userEmail,
-        userPhone : req.body.userPhone
+        userPhone : req.body.userPhone,
+        citizen : req.body.citizen
     }
     var otp = req.body.otp
     if(otp == "1234"){
-        knex.data_post_in_table(all_details)
+        knex.users_data(all_detail)
         .then(() => {
             res.send("postdata")
         }).catch((err) => {
