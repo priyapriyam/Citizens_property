@@ -1,31 +1,40 @@
 const knex = require('./connection')
 
-// reg
+//1 reg
 let users_data = (all_detail)=>{
     return knex('userInformation').insert(all_detail)
 }
 
-//login 
+//2login 
 var login_userName = (userName) => {
     return knex.select("*").from("userInformation").havingIn("userInformation.userName",userName)
 }
 
-//get data  by PTIN
+//3 get data  by PTIN
 let get_data_by_PTIN = (PTIN) =>{
     return knex.select ("*").from ('property') .where ('PTIN',PTIN)
 }
+
+//4 udate data by PTIN
 
 let update_citizen = (citizen) => {
     return knex.select("*").from("userInformation").havingIn("userInformation.citizen",citizen)
 }
 
+//5 for roles
+
 let data_post_in_table = (all_details)=>{
     return knex('roles').insert(all_details)
 }
 
+//6 citizen status 
+
 let citizen_status = (data) => {
     return knex('Status_table').insert(data)
 };
+
+
+//7 Admin and super admin's action
 
 let get_data = (Id) => {
     return knex('Status_table').select('*').where('Status_table.Id',Id)

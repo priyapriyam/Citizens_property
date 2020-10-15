@@ -3,7 +3,8 @@ const app = express();
 const knex = require('../model/knex_quries')
 const jwt = require('jsonwebtoken')
 
-// THIS API FOR LOGIN
+// 2 THIS API FOR LOGIN
+
 app.post('/login',(req,res)=>{
     var userName = req.body.userName.trim();
     var userPhone = req.body.userPhone
@@ -23,7 +24,7 @@ app.post('/login',(req,res)=>{
                 res.json("login sucessfully")
             } 
             else{ 
-              res.send("wrong userPhone")
+              res.send("wrong userPhone number")
             }  
         }
     }).catch((err)=>{  
@@ -31,7 +32,7 @@ app.post('/login',(req,res)=>{
     })
 }) 
 
-//
+//3  read data by PTIN
 app.get('/getthedata/:PTIN', (req,res) => {
     PTIN = req.params.PTIN
     knex.get_data_by_PTIN(PTIN)
@@ -44,7 +45,8 @@ app.get('/getthedata/:PTIN', (req,res) => {
         console.log("err")
     })
 })
-//
+
+//4  update data by  PTIN
 app.put("/updateApi/:PTIN", (req, res) => {
     var PTIN = req.params.PTIN
     let alltoken = req.headers.cookie
@@ -70,8 +72,7 @@ app.put("/updateApi/:PTIN", (req, res) => {
     })
 })
 
-
-//roles api
+//5 roles api
 app.post('/insert_data',(req,res)=>{
     let post_data = {
         admin : req.body.admin,
@@ -89,6 +90,9 @@ app.post('/insert_data',(req,res)=>{
     })
 })
 
+
+//6 request to the admin and see the status
+
 app.post("/Request",(req,res) => {
     let alltoken = req.headers.cookie
     var token = alltoken.split('=')
@@ -102,13 +106,14 @@ app.post("/Request",(req,res) => {
         }
         knex.citizen_status(data)
         .then(() => {
-            res.send("insert")
+            res.send("inserted")
         }).catch((err) => {
             res.send(err)
         })
     })
 });
 
+//7 Admin can see citizen's property,After that he can take actions
 
 app.get('/get/:id',(req,res) => {
     var id = req.params.id

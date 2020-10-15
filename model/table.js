@@ -36,7 +36,7 @@ knex.schema.hasTable("user_details").then((exists)=>{
     return console.log("user_details has created")
 })
 
-//3table for  users information
+//2 table for  users information
 knex.schema.hasTable("userInformation").then((exists)=>{
     if (!exists){
         return knex.schema.createTable("userInformation",(table)=>{
@@ -53,7 +53,7 @@ knex.schema.hasTable("userInformation").then((exists)=>{
     return console.log("user_details has created")
 })
 
-// 
+// for role
 knex.schema.hasTable("roles").then((exists)=>{
     if (!exists){
         return knex.schema.createTable("roles",(table)=>{
@@ -69,7 +69,7 @@ knex.schema.hasTable("roles").then((exists)=>{
     return console.log("user_details has created")
 })
 
-// 5 appoveval and rejected status 
+// 4 appoveval and rejected status 
 knex.schema.hasTable("Status_table").then((exists)=>{
     if (!exists){
         return knex.schema.createTable("Status_table",(table)=>{
